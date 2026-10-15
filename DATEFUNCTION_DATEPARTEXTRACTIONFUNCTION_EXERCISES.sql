@@ -24,9 +24,9 @@ END;
 SELECT *
 FROM dbo.DateExtractionPractice;
 
-###The query is use to create the TABLE TO WORK ON Date function exercises
+--###The query is use to create the TABLE TO WORK ON Date function exercises
 
-#Exercise 1: From DateExtractionPractice, show each order’s ID, date only, year, month number, and month name. Use CAST, YEAR, MONTH, and DATENAME.
+--#Exercise 1: From DateExtractionPractice, show each order’s ID, date only, year, month number, and month name. Use CAST, YEAR, MONTH, and DATENAME.
 
 ANS-
 SELECT
@@ -36,7 +36,7 @@ YEAR(OrderDateTime)AS YEAR,
 MONTH(ORDERDATETIME)AS MONTH
 FROM DateExtractionPractice
 
-Exercise 2: Find all orders placed in the first quarter of 2024. Use YEAR() and DATEPART(QUARTER, ...) to filter the rows.
+--Exercise 2: Find all orders placed in the first quarter of 2024. Use YEAR() and DATEPART(QUARTER, ...) to filter the rows.
 
 SELECT 
 ORDERID,
@@ -45,7 +45,7 @@ DATEPART(QUARTER,OrderDateTime) AS QUARTER_RESULTS
 FROM DateExtractionPractice
 WHERE DATEPART(QUARTER,OrderDateTime)=1 AND YEAR(ORDERDATETIME)=2024;
 
-**Exercise 3:** For each order, show its ID and order date, then use `DATETRUNC` to display the start of its month, quarter, and year.
+--**Exercise 3:** For each order, show its ID and order date, then use `DATETRUNC` to display the start of its month, quarter, and year.
 SELECT 
 ORDERID,
 ORDERDATETIME,
@@ -54,7 +54,7 @@ CAST(DATETRUNC(QUARTER,ORDERDATETIME) AS DATE) AS START_OF_QUARTER,
 CAST(DATETRUNC(YEAR,ORDERDATETIME)AS DATE) AS START_OF_YEAR
 FROM DateExtractionPractice
 
-**Exercise 4:** Find all orders placed on the last calendar day of their month. Use `EOMONTH` and remember that `OrderDateTime` includes a time.
+--**Exercise 4:** Find all orders placed on the last calendar day of their month. Use `EOMONTH` and remember that `OrderDateTime` includes a time.
 
 SELECT 
 ORDERID,
@@ -63,7 +63,7 @@ EOMONTH(ORDERDATETIME) AS END_MONTH_SALES
 FROM DateExtractionPractice
 WHERE CAST(ORDERDATETIME AS DATE)=EOMONTH(ORDERDATETIME);
 
-**Exercise 5:** List each order’s ID, customer name, and date/time. Sort the results from newest to oldest using `ORDER BY ... DESC`.
+--**Exercise 5:** List each order’s ID, customer name, and date/time. Sort the results from newest to oldest using `ORDER BY ... DESC`.
 
 SELECT
 ORDERID,
