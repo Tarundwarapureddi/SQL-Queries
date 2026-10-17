@@ -131,5 +131,63 @@ Solution*/
   FROM date_practice
   WHERE DATENAME(WEEKDAY,raw_date_time) = 'Saturday' or DATENAME(WEEKDAY,raw_date_time)= 'Sunday';  
 
+/* Exercise 9: Calculate the number of days between each raw_date_time and today.
+Return:
+id | raw_date_time | days_from_today*/
+
+
+SELECT
+ID,
+raw_date_time,
+DATEDIFF(DAY,raw_date_time,GETDATE()) AS day_from_today
+FROM date_practice
+
+/*Exercise 10: Add 30 days to every raw_date_time.
+Return:
+id | raw_date_time | date_after_30_days
+SOLUTION: */
+
+SELECT
+id,
+raw_date_time,
+DATEADD(DAY,30,raw_date_time) AS date_after_30_days
+FROM date_practice
+
+/*Exercise 11: For every raw_date_time, show the first day and last day of its month.
+Return:
+id | raw_date_time | first_day_of_month | last_day_of_month
+
+SOLUTION- */
+
+SELECT
+    id,
+    raw_date_time,
+    CAST(DATETRUNC(MONTH, raw_date_time) AS DATE) AS first_day_of_month,
+    EOMONTH(raw_date_time) AS last_day_of_month
+FROM dbo.date_practice;
+
+/*Exercise 15: Sort the records by month name in alphabetical order.
+Return:
+id | raw_date_time | month_name
+After that, write a second query that sorts the records in calendar-month order: January through December.
+SOLTIONS FOR BOTH-*/
+
+--ALPHABETICAL ORDER
+SELECT 
+id,
+raw_date_time,
+DATENAME(MONTH,raw_date_time) AS month_name
+FROM date_practice
+ORDER BY month_name ASC
+
+--Calendar month order
+
+SELECT 
+id,
+raw_date_time,
+MONTH(raw_date_time) AS month_number,
+DATENAME(MONTH,raw_date_time) AS month_name
+FROM date_practice
+ORDER BY month_number ASC;
 
   
